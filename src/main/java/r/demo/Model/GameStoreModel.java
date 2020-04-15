@@ -9,7 +9,7 @@ import lombok.*;
 @Setter
 @ToString
 public class GameStoreModel {
-    private String id;
+    private String id ;
     private String productName;
     private double productPrice;
 
