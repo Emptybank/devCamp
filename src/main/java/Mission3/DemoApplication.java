@@ -1,4 +1,4 @@
-package r.demo;
+package Mission3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

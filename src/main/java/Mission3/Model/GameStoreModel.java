@@ -1,4 +1,4 @@
-package r.demo.Model;
+package Mission3.Model;
 
 
 import lombok.*;

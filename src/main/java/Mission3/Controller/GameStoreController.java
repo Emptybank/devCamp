@@ -1,43 +1,43 @@
-package r.demo.Controller;
+package Mission3.Controller;
 
+import Mission3.Repository.GameStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import r.demo.Model.GameStoreModel;
-import r.demo.Service.GameStoreService;
-
+import Mission3.Model.GameStoreModel;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 
 public class GameStoreController {
 
     @Autowired
-    private GameStoreService gameStoreService;
+    private GameStoreRepository gameStoreRepository;
 
     @GetMapping("/api/product")
     public List<GameStoreModel> allProducts() {
-        return gameStoreService.getAllgameList();
+        return gameStoreRepository.getAllgameList();
     }
 
     @GetMapping("/api/product/{id}")
-    public GameStoreModel getProductById(@PathVariable("id") String id) {
-        return gameStoreService.getOneProduct(id);
+    public Optional <GameStoreModel> getProductById(@PathVariable("id") String id) {
+        return gameStoreRepository.getOneProduct(id);
     }
 
     @PostMapping("/api/product")
     public void addProduct(@RequestBody GameStoreModel gameStoreModel) {
-        gameStoreService.addProduct(gameStoreModel);
+        gameStoreRepository.addProduct(gameStoreModel);
     }
 
     @PutMapping("/api/product/{id}")
     public void updateProduct(@RequestBody GameStoreModel gameStoreModel, @PathVariable("id") String id) {
-        gameStoreService.updateProduct(gameStoreModel, id);
+        gameStoreRepository.updateProduct(gameStoreModel);
     }
 
     @DeleteMapping("/api/product/{id}")
     public void removeProduct(@PathVariable("id") String id) {
-        gameStoreService.removeProduct(id);
+        gameStoreRepository.removeProduct(id);
 
 
     }
