@@ -1,10 +1,10 @@
-package Mission3.Controller;
+package Mission3_1.Controller;
 
-import Mission3.Repository.GameStoreRepository;
+import Mission3_1.Repository.GameStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import Mission3.Model.GameStoreModel;
+import Mission3_1.Model.GameStoreModel;
 import java.util.List;
 import java.util.Optional;
 
