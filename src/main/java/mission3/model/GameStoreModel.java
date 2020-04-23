@@ -1,4 +1,4 @@
-package Mission3_1.Model;
+package mission3.model;
 
 
 import lombok.*;
