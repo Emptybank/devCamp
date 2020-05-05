@@ -1,12 +1,13 @@
-package mission3.repository;
+package mission4.repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import mission3.model.GameStoreModel;
+import mission4.model.GameStoreModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -40,12 +41,13 @@ public class GameStoreRepository {
         }
 
         //GET (By Id)
-        public Optional<GameStoreModel> getOneProduct(String id){
-
-            return Optional.of(jdbcTemplate.queryForObject("select * from tbl_game_store_profile where id = ?", new Object[]{id
-                    },new BeanPropertyRowMapper<GameStoreModel> (GameStoreModel.class)));
+        public GameStoreModel getOneProduct(String id){
+            try {
+                return jdbcTemplate.queryForObject("select * from tbl_game_store_profile where id = ?", new Object[]{id},new BeanPropertyRowMapper<>(GameStoreModel.class));
+            } catch (EmptyResultDataAccessException e) {
+                return null;
+            }
         }
-
 
         public void removeProduct (String id){
 
@@ -66,6 +68,7 @@ public class GameStoreRepository {
             jdbcTemplate.update("update tbl_game_store_profile" + " set product_name = ?, product_price = ?" + "where id = ?",
                     new Object[]{ //get value from
                     gameStoreModel.getProductName(), gameStoreModel.getProductPrice(),gameStoreModel.getId()});
+
 
         }
     }
